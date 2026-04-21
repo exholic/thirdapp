@@ -52,3 +52,30 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+
+$('#contactForm').on('submit', function(event) {
+    event.preventDefault(); // Stops the standard browser submit
+    // Your custom logic here
+
+    $.ajax({
+        method: 'POST',
+        url: 'https://formsubmit.co/ajax/the3rdfitnesslab2024@gmail.com',
+        dataType: 'json',
+        accepts: 'application/json',
+        data: {
+            name: $('#name').val(),
+            email: $('#email').val(),
+            phone: $('#phone').val(),
+            message: $('#message').val(),
+            _template: "table"
+        },
+        success: function(data) {
+            alert("Thank you! Your message has been sent");
+            (data) => console.log(data);
+            $(this)[0].reset(); 
+        },
+        error: (err) => console.log(err)
+    });
+    
+});
